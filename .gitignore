@@ -151,3 +151,5 @@ cython_debug/
 #.idea/
 
 data/
+reports/
+poetry.lock
