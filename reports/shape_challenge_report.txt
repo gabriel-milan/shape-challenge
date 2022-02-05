@@ -1,0 +1,10 @@
+>>> Report of failures between 2020-01-01 and 2020-01-31 <<<
+- Total number of failures: 11297
+- Equipment code with the most failures: E1AD07D4
+- Average failures across equipment groups:
+	* VAPQY59S: 802.0
+	* PA92NCXZ: 833.0
+	* 9N127Z5P: 846.5
+	* NQWPA8D3: 847.5
+	* FGHQWR2Q: 880.75
+	* Z9K1SAP4: 1116.0

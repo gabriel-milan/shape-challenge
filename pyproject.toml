@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "shape-challenge"
+version = "0.1.0"
+description = "My personal implementation for solving the Shape's Hard Skill Test - Data Engineer"
+authors = ["Gabriel Gazola Milan <gabriel.gazola@poli.ufrj.br>"]
+license = "GPL-3.0"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pandas = "^1.4.0"
+pdoc3 = {version = "^0.10.0", extras = ["docs"]}
+pylint = {version = "^2.12.2", extras = ["lint"]}
+prefect = "^0.15.13"
+requests = "^2.27.1"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.extras]
+docs = ["pdoc3^0.10.0"]
+lint = ["pylint^2.12.2"]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

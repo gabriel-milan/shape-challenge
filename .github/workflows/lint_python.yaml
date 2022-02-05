@@ -18,11 +18,12 @@ jobs:
           pip install -U pip poetry
       - name: Install flows
         run: |
-          poetry install -E lint
+          pip install -U .
+          pip install pylint
       - name: Lint flows
         uses: gabriel-milan/action-pylint@v1
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          path: "fluyd/"
+          path: "shape_challenge/"
           fail: true
           pr-message: true
