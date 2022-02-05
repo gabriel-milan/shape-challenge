@@ -1,0 +1,11 @@
+[{
+        "equipment_id": 1,
+        "code": "A1B2C3D4",
+        "group_name": "GROUP123"
+    },
+    {
+        "equipment_id": 2,
+        "code": "D4C3B2A1",
+        "group_name": "GROUP321"
+    }
+]
