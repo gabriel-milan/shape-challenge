@@ -68,18 +68,16 @@ def parse_failure_logs(
         - vibration (float): The vibration measured by the sensor.
     """
     # Open file for reading
-    with open(fname, 'r') as f:
-        lines: List[str] = f.readlines()
+    with open(fname, 'r', encoding='utf-8') as file:
+        lines: List[str] = file.readlines()
 
     # Parse each line
     data: List[List[str]] = []
     regex = \
-        r"\[(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\]\t(.+?(?=\t))\tsensor\[(.+?)\]:\t\(temperature\t(.+?(?=,)), vibration\t(.+?(?=\)))"
+        r"\[(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\]\t(.+?(?=\t))\tsensor\[(.+?)\]:\t\(temperature\t(.+?(?=,)), vibration\t(.+?(?=\)))"  # pylint: disable=line-too-long
     for line in lines:
         values = re.findall(regex, line)
-        if len(values) != 1:
-            raise ValueError(f"Error while parsing line: {line}")
-        elif len(values[0]) != 5:
+        if (len(values) != 1) or (len(values[0]) != 5):
             raise ValueError(f"Error while parsing line: {line}")
         data += [values[0]]
 

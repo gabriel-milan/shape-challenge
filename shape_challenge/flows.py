@@ -1,3 +1,4 @@
+# pylint: disable=R0801
 """
 Implementation of the data flow using Prefect. The flow is implemented using
 parameters so we can assure this package is reusable.
@@ -5,7 +6,6 @@ parameters so we can assure this package is reusable.
 
 from prefect import Flow, Parameter, case
 
-from shape_challenge.constants import Constants as constants
 from shape_challenge.tasks import (
     download_data,
     filter_data,
@@ -63,9 +63,9 @@ with Flow("Shape's Hard Skill Test - Data Engineer") as flow:
     # Filter the data
     dataframe = filter_data(
         dataframe=dataframe,
-        column="timestamp",
-        range_min=start_date,
-        range_max=end_date,
+        filter_column="timestamp",
+        range_start=start_date,
+        range_end=end_date,
     )
 
     ###########################################################################

@@ -67,8 +67,8 @@ def download_data(
         response = requests.get(url_or_path)
 
         # Saves file to directory
-        with open(filepath, "w") as f:
-            f.write(response.text)
+        with open(filepath, "w", encoding="utf-8") as file:
+            file.write(response.text)
 
     return str(filepath)
 
@@ -76,28 +76,29 @@ def download_data(
 @task(checkpoint=False)
 def filter_data(
     dataframe: pd.DataFrame,
-    column: str,
-    range_min: float,
-    range_max: float,
+    filter_column: str,
+    range_start: float,
+    range_end: float,
 ) -> pd.DataFrame:
     """
-    Filters dataframe by a column and a range.
+    Filters a range within a dataframe column.
 
     Args:
         dataframe (pd.DataFrame): Dataframe to filter.
-        column (str): Column to filter.
-        range_min (float): Minimum value for the range.
-        range_max (float): Maximum value for the range.
+        filter_column (str): Column to filter.
+        range_start (float): Minimum value for the range.
+        range_end (float): Maximum value for the range.
 
     Returns:
         A filtered dataframe.
     """
     log(
-        f"Filtering dataframe by {column} and range [{range_min}, {range_max}]")
-    return filter_range(dataframe, column, range_min, range_max)
+        f"Filtering dataframe by {filter_column} and range [{range_start}, {range_end}]")
+    return filter_range(dataframe, filter_column, range_start, range_end)
 
 
 @task
+# pylint: disable=too-many-arguments
 def generate_report(
     output_file_path: str,
     total_failures: int,
@@ -123,13 +124,13 @@ def generate_report(
     report += f">>> Report of failures between {range_min} and {range_max} <<<\n"
     report += f"- Total number of failures: {total_failures}\n"
     report += f"- Equipment code with the most failures: {most_failures_equipment_code}\n"
-    report += f"- Average failures across equipment groups:\n"
+    report += "- Average failures across equipment groups:\n"
     for _, row in average_failures_across_equipment_groups.iterrows():
         report += f"\t* {row['equipment_group_name']}: {row['average_failures']}\n"
     output_file = Path(output_file_path)
     output_file.parent.mkdir(parents=True, exist_ok=True)
-    with open(output_file_path, "w") as f:
-        f.write(report)
+    with open(output_file_path, "w", encoding="utf-8") as file:
+        file.write(report)
     return report
 
 
@@ -174,7 +175,7 @@ def get_average_failures_across_equipment_groups(
     dataframe_merged = dataframe_merged.drop(
         columns=["equipment_count", "failure_count"])
 
-    log(f"The average number of failures for each equipment group is:")
+    log("The average number of failures for each equipment group is:")
     log(dataframe_merged)
 
     return dataframe_merged
@@ -270,8 +271,8 @@ def load_data(
         sensor_equipment = parse_equipment_sensors_relationship(filenames[2])
         log("Successfully parsed equipment-sensor relationships.")
     except Exception as exc:
-        raise ValueError(f"filenames must be in the following order: "
-                         f"failure_logs, equipment, sensor_equipment") from exc
+        raise ValueError("filenames must be in the following order: "
+                         "failure_logs, equipment, sensor_equipment") from exc
 
     # Merges data
     log("Merging dataframes and returning...")
