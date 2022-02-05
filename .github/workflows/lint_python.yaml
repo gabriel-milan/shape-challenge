@@ -23,6 +23,6 @@ jobs:
         uses: gabriel-milan/action-pylint@v1
         with:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          path: "fluyd/"
+          path: "shape_challenge/"
           fail: true
           pr-message: true
