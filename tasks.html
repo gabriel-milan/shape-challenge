@@ -1,0 +1,829 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>shape_challenge.tasks API documentation</title>
+<meta name="description" content="Task definitions for the data flow. This is where the actual work is done.
+(This is where the magic happens.)" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>shape_challenge.tasks</code></h1>
+</header>
+<section id="section-intro">
+<p>Task definitions for the data flow. This is where the actual work is done.
+(This is where the magic happens.)</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+Task definitions for the data flow. This is where the actual work is done.
+(This is where the magic happens.)
+&#34;&#34;&#34;
+
+from pathlib import Path
+import shutil
+from typing import Any, List
+
+import pandas as pd
+from prefect import task
+import requests
+
+from shape_challenge.logging import (
+    log,
+)
+from shape_challenge.parsing import (
+    parse_equipment_sensors_relationship,
+    parse_failure_logs,
+)
+from shape_challenge.transform import (
+    filter_range,
+    merge_data,
+)
+
+
+@task(nout=3)
+def download_data(
+    url_or_path: str,
+    directory_prefix: str = None,
+) -&gt; str:
+    &#34;&#34;&#34;
+    Downloads a file to `/tmp/&lt;directory_prefix&gt;/&lt;filename&gt;`.
+    The directory is created if it does not exist.
+
+    Args:
+        url (str): URL to the file.
+        directory_prefix (str, optional): Prefix for the directory.
+
+    Returns:
+        The path to the downloaded file.
+    &#34;&#34;&#34;
+    # Check if it&#39;s a file or a URL
+    if Path(url_or_path).is_file():
+        # It&#39;s a file, let&#39;s just copy it to a temporary directory
+        filename = Path(url_or_path).name
+        filepath = Path(f&#34;/tmp/{directory_prefix}/{filename}&#34;)
+        filepath.parent.mkdir(parents=True, exist_ok=True)
+        log(f&#34;Copying {url_or_path} to {filepath}&#34;)
+        shutil.copy(url_or_path, filepath)
+    else:
+        # Splits URL and gets filename
+        filename: str = url_or_path.split(&#34;/&#34;)[-1]
+
+        # Adds prefix to directory name if given
+        if directory_prefix is not None:
+            directory = Path(f&#34;/tmp/{directory_prefix}&#34;)
+        else:
+            directory = Path(&#34;/tmp&#34;)
+
+        # Creates directory if it does not exist
+        directory.mkdir(parents=True, exist_ok=True)
+        filepath = directory / filename
+
+        # Downloads file
+        log(f&#34;Downloading file from {url_or_path} to {filepath}...&#34;)
+        response = requests.get(url_or_path)
+
+        # Saves file to directory
+        with open(filepath, &#34;w&#34;, encoding=&#34;utf-8&#34;) as file:
+            file.write(response.text)
+
+    return str(filepath)
+
+
+@task(checkpoint=False)
+def filter_data(
+    dataframe: pd.DataFrame,
+    filter_column: str,
+    range_start: float,
+    range_end: float,
+) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;
+    Filters a range within a dataframe column.
+
+    Args:
+        dataframe (pd.DataFrame): Dataframe to filter.
+        filter_column (str): Column to filter.
+        range_start (float): Minimum value for the range.
+        range_end (float): Maximum value for the range.
+
+    Returns:
+        A filtered dataframe.
+    &#34;&#34;&#34;
+    log(
+        f&#34;Filtering dataframe by {filter_column} and range [{range_start}, {range_end}]&#34;)
+    return filter_range(dataframe, filter_column, range_start, range_end)
+
+
+@task
+# pylint: disable=too-many-arguments
+def generate_report(
+    output_file_path: str,
+    total_failures: int,
+    most_failures_equipment_code: str,
+    average_failures_across_equipment_groups: pd.DataFrame,
+    range_min: str,
+    range_max: str,
+) -&gt; str:
+    &#34;&#34;&#34;
+    Generates a report and save it locally.
+
+    Args:
+        total_failures (int): Total number of failures.
+        most_failures_equipment_code (str): Equipment code with the most failures.
+        average_failures_across_equipment_groups (pd.DataFrame): Average failures
+            across equipment groups.
+
+    Returns:
+        The report text.
+    &#34;&#34;&#34;
+    log(&#34;Generating report...&#34;)
+    report = &#34;&#34;
+    report += f&#34;&gt;&gt;&gt; Report of failures between {range_min} and {range_max} &lt;&lt;&lt;\n&#34;
+    report += f&#34;- Total number of failures: {total_failures}\n&#34;
+    report += f&#34;- Equipment code with the most failures: {most_failures_equipment_code}\n&#34;
+    report += &#34;- Average failures across equipment groups:\n&#34;
+    for _, row in average_failures_across_equipment_groups.iterrows():
+        report += f&#34;\t* {row[&#39;equipment_group_name&#39;]}: {row[&#39;average_failures&#39;]}\n&#34;
+    output_file = Path(output_file_path)
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    with open(output_file_path, &#34;w&#34;, encoding=&#34;utf-8&#34;) as file:
+        file.write(report)
+    return report
+
+
+@task(checkpoint=False)
+def get_average_failures_across_equipment_groups(
+    dataframe: pd.DataFrame,
+) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;
+    Gets the average number of failures for each equipment group, ordered
+    by the number of failures in ascending order.
+
+    Args:
+        dataframe (pd.DataFrame): Dataframe to filter.
+
+    Returns:
+        A dataframe with the average number of failures for each
+        equipment group.
+    &#34;&#34;&#34;
+    # Count equipments per group
+    dataframe_count = dataframe.groupby(&#34;equipment_group_name&#34;
+                                        ).agg({&#34;equipment_code&#34;: &#34;nunique&#34;}).rename(
+        columns={&#34;equipment_code&#34;: &#34;equipment_count&#34;}).reset_index()
+
+    # Count failures per group
+    dataframe_failures = dataframe.groupby(&#34;equipment_group_name&#34;
+                                           ).count()[[&#34;sensor_id&#34;]].rename(
+        columns={&#34;sensor_id&#34;: &#34;failure_count&#34;}).reset_index()
+
+    # Merge dataframes
+    dataframe_merged = pd.merge(dataframe_count, dataframe_failures,
+                                on=&#34;equipment_group_name&#34;)
+
+    # Calculate average failures per group
+    dataframe_merged[&#34;average_failures&#34;] = dataframe_merged[
+        &#34;failure_count&#34;] / dataframe_merged[&#34;equipment_count&#34;]
+
+    # Sort by average failures
+    dataframe_merged = dataframe_merged.sort_values(
+        by=&#34;average_failures&#34;, ascending=True)
+
+    # Remove extra columns
+    dataframe_merged = dataframe_merged.drop(
+        columns=[&#34;equipment_count&#34;, &#34;failure_count&#34;])
+
+    log(&#34;The average number of failures for each equipment group is:&#34;)
+    log(dataframe_merged)
+
+    return dataframe_merged
+
+
+@task
+def get_most_failures_equipment_code(
+    dataframe: pd.DataFrame,
+) -&gt; str:
+    &#34;&#34;&#34;
+    Gets the equipment code with the most failures.
+
+    Args:
+        dataframe (pd.DataFrame): Dataframe to filter.
+
+    Returns:
+        The equipment code with the most failures.
+    &#34;&#34;&#34;
+    code = dataframe.groupby(&#34;equipment_code&#34;).count()[
+        &#34;sensor_id&#34;].idxmax()
+    log(f&#34;The equipment code with the most failures is {code}&#34;)
+    return code
+
+
+@task
+def get_total_equipment_failures(
+    dataframe: pd.DataFrame,
+) -&gt; int:
+    &#34;&#34;&#34;
+    Returns the total number of equipment failures.
+
+    Args:
+        dataframe (pd.DataFrame): Dataframe with the equipment failures.
+
+    Returns:
+        The total number of equipment failures.
+    &#34;&#34;&#34;
+    total = dataframe.shape[0]
+    log(f&#34;Total number of equipment failures: {total}&#34;)
+    return total
+
+
+@task
+def is_none(
+    value: Any,
+) -&gt; bool:
+    &#34;&#34;&#34;
+    Checks if a value is None.
+
+    Args:
+        value (Any): Value to check.
+
+    Returns:
+        True if the value is None, False otherwise.
+    &#34;&#34;&#34;
+    return value is None
+
+
+@task(checkpoint=False)
+def load_data(
+    filenames: List[str],
+) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;
+    Loads data from the downloaded files and returns the merged DataFrame.
+
+    Args:
+        filenames: List[str]: Filenames of the downloaded files. It must
+            have length 3 and the following order:
+
+            - failure_logs_path (str): Path to the failure logs.
+            - equipment_path (str): Path to the equipment information.
+            - sensor_equipment_path (str): Path to the equipments and
+                sensors relationships.
+
+    Returns:
+        A tuple with the dataframes.
+
+    Raises:
+        AssertionError: If the length of the filenames is not 3.
+        ValueError: If the filenames are in the wrong order.
+    &#34;&#34;&#34;
+    # Checks length of filenames
+    if len(filenames) != 3:
+        raise AssertionError(&#34;filenames must have length 3&#34;)
+
+    # Tries to load data. If it fails, assumes that filenames is in the
+    # wrong order and raises an error.
+    try:
+        failure_logs = parse_failure_logs(filenames[0])
+        log(&#34;Successfully parsed failure logs.&#34;)
+        equipment = pd.read_json(filenames[1])
+        log(&#34;Successfully parsed equipment information.&#34;)
+        sensor_equipment = parse_equipment_sensors_relationship(filenames[2])
+        log(&#34;Successfully parsed equipment-sensor relationships.&#34;)
+    except Exception as exc:
+        raise ValueError(&#34;filenames must be in the following order: &#34;
+                         &#34;failure_logs, equipment, sensor_equipment&#34;) from exc
+
+    # Merges data
+    log(&#34;Merging dataframes and returning...&#34;)
+    return merge_data(failure_logs, equipment, sensor_equipment)
+
+
+@task
+def send_report_to_discord(
+    report_text: str,
+    discord_webhook_url: str,
+) -&gt; None:
+    &#34;&#34;&#34;
+    Sends the report to the Discord webhook.
+
+    Args:
+        report_text (str): The report text.
+        discord_webhook_url (str): The Discord webhook URL.
+    &#34;&#34;&#34;
+    log(&#34;Sending report to Discord...&#34;)
+    requests.post(
+        discord_webhook_url,
+        data={
+            &#34;content&#34;: f&#34;```{report_text}```&#34;
+        }
+    )</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="shape_challenge.tasks.download_data"><code class="name flex">
+<span>def <span class="ident">download_data</span></span>(<span>url_or_path: str, directory_prefix: str = None) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Downloads a file to <code>/tmp/&lt;directory_prefix&gt;/&lt;filename&gt;</code>.
+The directory is created if it does not exist.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>url</code></strong> :&ensp;<code>str</code></dt>
+<dd>URL to the file.</dd>
+<dt><strong><code>directory_prefix</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>Prefix for the directory.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The path to the downloaded file.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@task(nout=3)
+def download_data(
+    url_or_path: str,
+    directory_prefix: str = None,
+) -&gt; str:
+    &#34;&#34;&#34;
+    Downloads a file to `/tmp/&lt;directory_prefix&gt;/&lt;filename&gt;`.
+    The directory is created if it does not exist.
+
+    Args:
+        url (str): URL to the file.
+        directory_prefix (str, optional): Prefix for the directory.
+
+    Returns:
+        The path to the downloaded file.
+    &#34;&#34;&#34;
+    # Check if it&#39;s a file or a URL
+    if Path(url_or_path).is_file():
+        # It&#39;s a file, let&#39;s just copy it to a temporary directory
+        filename = Path(url_or_path).name
+        filepath = Path(f&#34;/tmp/{directory_prefix}/{filename}&#34;)
+        filepath.parent.mkdir(parents=True, exist_ok=True)
+        log(f&#34;Copying {url_or_path} to {filepath}&#34;)
+        shutil.copy(url_or_path, filepath)
+    else:
+        # Splits URL and gets filename
+        filename: str = url_or_path.split(&#34;/&#34;)[-1]
+
+        # Adds prefix to directory name if given
+        if directory_prefix is not None:
+            directory = Path(f&#34;/tmp/{directory_prefix}&#34;)
+        else:
+            directory = Path(&#34;/tmp&#34;)
+
+        # Creates directory if it does not exist
+        directory.mkdir(parents=True, exist_ok=True)
+        filepath = directory / filename
+
+        # Downloads file
+        log(f&#34;Downloading file from {url_or_path} to {filepath}...&#34;)
+        response = requests.get(url_or_path)
+
+        # Saves file to directory
+        with open(filepath, &#34;w&#34;, encoding=&#34;utf-8&#34;) as file:
+            file.write(response.text)
+
+    return str(filepath)</code></pre>
+</details>
+</dd>
+<dt id="shape_challenge.tasks.filter_data"><code class="name flex">
+<span>def <span class="ident">filter_data</span></span>(<span>dataframe: pandas.core.frame.DataFrame, filter_column: str, range_start: float, range_end: float) ‑> pandas.core.frame.DataFrame</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Filters a range within a dataframe column.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>dataframe</code></strong> :&ensp;<code>pd.DataFrame</code></dt>
+<dd>Dataframe to filter.</dd>
+<dt><strong><code>filter_column</code></strong> :&ensp;<code>str</code></dt>
+<dd>Column to filter.</dd>
+<dt><strong><code>range_start</code></strong> :&ensp;<code>float</code></dt>
+<dd>Minimum value for the range.</dd>
+<dt><strong><code>range_end</code></strong> :&ensp;<code>float</code></dt>
+<dd>Maximum value for the range.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A filtered dataframe.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@task(checkpoint=False)
+def filter_data(
+    dataframe: pd.DataFrame,
+    filter_column: str,
+    range_start: float,
+    range_end: float,
+) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;
+    Filters a range within a dataframe column.
+
+    Args:
+        dataframe (pd.DataFrame): Dataframe to filter.
+        filter_column (str): Column to filter.
+        range_start (float): Minimum value for the range.
+        range_end (float): Maximum value for the range.
+
+    Returns:
+        A filtered dataframe.
+    &#34;&#34;&#34;
+    log(
+        f&#34;Filtering dataframe by {filter_column} and range [{range_start}, {range_end}]&#34;)
+    return filter_range(dataframe, filter_column, range_start, range_end)</code></pre>
+</details>
+</dd>
+<dt id="shape_challenge.tasks.generate_report"><code class="name flex">
+<span>def <span class="ident">generate_report</span></span>(<span>output_file_path: str, total_failures: int, most_failures_equipment_code: str, average_failures_across_equipment_groups: pandas.core.frame.DataFrame, range_min: str, range_max: str) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generates a report and save it locally.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>total_failures</code></strong> :&ensp;<code>int</code></dt>
+<dd>Total number of failures.</dd>
+<dt><strong><code>most_failures_equipment_code</code></strong> :&ensp;<code>str</code></dt>
+<dd>Equipment code with the most failures.</dd>
+<dt><strong><code>average_failures_across_equipment_groups</code></strong> :&ensp;<code>pd.DataFrame</code></dt>
+<dd>Average failures
+across equipment groups.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The report text.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@task
+# pylint: disable=too-many-arguments
+def generate_report(
+    output_file_path: str,
+    total_failures: int,
+    most_failures_equipment_code: str,
+    average_failures_across_equipment_groups: pd.DataFrame,
+    range_min: str,
+    range_max: str,
+) -&gt; str:
+    &#34;&#34;&#34;
+    Generates a report and save it locally.
+
+    Args:
+        total_failures (int): Total number of failures.
+        most_failures_equipment_code (str): Equipment code with the most failures.
+        average_failures_across_equipment_groups (pd.DataFrame): Average failures
+            across equipment groups.
+
+    Returns:
+        The report text.
+    &#34;&#34;&#34;
+    log(&#34;Generating report...&#34;)
+    report = &#34;&#34;
+    report += f&#34;&gt;&gt;&gt; Report of failures between {range_min} and {range_max} &lt;&lt;&lt;\n&#34;
+    report += f&#34;- Total number of failures: {total_failures}\n&#34;
+    report += f&#34;- Equipment code with the most failures: {most_failures_equipment_code}\n&#34;
+    report += &#34;- Average failures across equipment groups:\n&#34;
+    for _, row in average_failures_across_equipment_groups.iterrows():
+        report += f&#34;\t* {row[&#39;equipment_group_name&#39;]}: {row[&#39;average_failures&#39;]}\n&#34;
+    output_file = Path(output_file_path)
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    with open(output_file_path, &#34;w&#34;, encoding=&#34;utf-8&#34;) as file:
+        file.write(report)
+    return report</code></pre>
+</details>
+</dd>
+<dt id="shape_challenge.tasks.get_average_failures_across_equipment_groups"><code class="name flex">
+<span>def <span class="ident">get_average_failures_across_equipment_groups</span></span>(<span>dataframe: pandas.core.frame.DataFrame) ‑> pandas.core.frame.DataFrame</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets the average number of failures for each equipment group, ordered
+by the number of failures in ascending order.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>dataframe</code></strong> :&ensp;<code>pd.DataFrame</code></dt>
+<dd>Dataframe to filter.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A dataframe with the average number of failures for each
+equipment group.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@task(checkpoint=False)
+def get_average_failures_across_equipment_groups(
+    dataframe: pd.DataFrame,
+) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;
+    Gets the average number of failures for each equipment group, ordered
+    by the number of failures in ascending order.
+
+    Args:
+        dataframe (pd.DataFrame): Dataframe to filter.
+
+    Returns:
+        A dataframe with the average number of failures for each
+        equipment group.
+    &#34;&#34;&#34;
+    # Count equipments per group
+    dataframe_count = dataframe.groupby(&#34;equipment_group_name&#34;
+                                        ).agg({&#34;equipment_code&#34;: &#34;nunique&#34;}).rename(
+        columns={&#34;equipment_code&#34;: &#34;equipment_count&#34;}).reset_index()
+
+    # Count failures per group
+    dataframe_failures = dataframe.groupby(&#34;equipment_group_name&#34;
+                                           ).count()[[&#34;sensor_id&#34;]].rename(
+        columns={&#34;sensor_id&#34;: &#34;failure_count&#34;}).reset_index()
+
+    # Merge dataframes
+    dataframe_merged = pd.merge(dataframe_count, dataframe_failures,
+                                on=&#34;equipment_group_name&#34;)
+
+    # Calculate average failures per group
+    dataframe_merged[&#34;average_failures&#34;] = dataframe_merged[
+        &#34;failure_count&#34;] / dataframe_merged[&#34;equipment_count&#34;]
+
+    # Sort by average failures
+    dataframe_merged = dataframe_merged.sort_values(
+        by=&#34;average_failures&#34;, ascending=True)
+
+    # Remove extra columns
+    dataframe_merged = dataframe_merged.drop(
+        columns=[&#34;equipment_count&#34;, &#34;failure_count&#34;])
+
+    log(&#34;The average number of failures for each equipment group is:&#34;)
+    log(dataframe_merged)
+
+    return dataframe_merged</code></pre>
+</details>
+</dd>
+<dt id="shape_challenge.tasks.get_most_failures_equipment_code"><code class="name flex">
+<span>def <span class="ident">get_most_failures_equipment_code</span></span>(<span>dataframe: pandas.core.frame.DataFrame) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Gets the equipment code with the most failures.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>dataframe</code></strong> :&ensp;<code>pd.DataFrame</code></dt>
+<dd>Dataframe to filter.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The equipment code with the most failures.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@task
+def get_most_failures_equipment_code(
+    dataframe: pd.DataFrame,
+) -&gt; str:
+    &#34;&#34;&#34;
+    Gets the equipment code with the most failures.
+
+    Args:
+        dataframe (pd.DataFrame): Dataframe to filter.
+
+    Returns:
+        The equipment code with the most failures.
+    &#34;&#34;&#34;
+    code = dataframe.groupby(&#34;equipment_code&#34;).count()[
+        &#34;sensor_id&#34;].idxmax()
+    log(f&#34;The equipment code with the most failures is {code}&#34;)
+    return code</code></pre>
+</details>
+</dd>
+<dt id="shape_challenge.tasks.get_total_equipment_failures"><code class="name flex">
+<span>def <span class="ident">get_total_equipment_failures</span></span>(<span>dataframe: pandas.core.frame.DataFrame) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the total number of equipment failures.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>dataframe</code></strong> :&ensp;<code>pd.DataFrame</code></dt>
+<dd>Dataframe with the equipment failures.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>The total number of equipment failures.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@task
+def get_total_equipment_failures(
+    dataframe: pd.DataFrame,
+) -&gt; int:
+    &#34;&#34;&#34;
+    Returns the total number of equipment failures.
+
+    Args:
+        dataframe (pd.DataFrame): Dataframe with the equipment failures.
+
+    Returns:
+        The total number of equipment failures.
+    &#34;&#34;&#34;
+    total = dataframe.shape[0]
+    log(f&#34;Total number of equipment failures: {total}&#34;)
+    return total</code></pre>
+</details>
+</dd>
+<dt id="shape_challenge.tasks.is_none"><code class="name flex">
+<span>def <span class="ident">is_none</span></span>(<span>value: Any) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Checks if a value is None.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>value</code></strong> :&ensp;<code>Any</code></dt>
+<dd>Value to check.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>True if the value is None, False otherwise.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@task
+def is_none(
+    value: Any,
+) -&gt; bool:
+    &#34;&#34;&#34;
+    Checks if a value is None.
+
+    Args:
+        value (Any): Value to check.
+
+    Returns:
+        True if the value is None, False otherwise.
+    &#34;&#34;&#34;
+    return value is None</code></pre>
+</details>
+</dd>
+<dt id="shape_challenge.tasks.load_data"><code class="name flex">
+<span>def <span class="ident">load_data</span></span>(<span>filenames: List[str]) ‑> pandas.core.frame.DataFrame</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Loads data from the downloaded files and returns the merged DataFrame.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>filenames</code></strong></dt>
+<dd>
+<p>List[str]: Filenames of the downloaded files. It must
+have length 3 and the following order:</p>
+<ul>
+<li>failure_logs_path (str): Path to the failure logs.</li>
+<li>equipment_path (str): Path to the equipment information.</li>
+<li>sensor_equipment_path (str): Path to the equipments and
+sensors relationships.</li>
+</ul>
+</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<p>A tuple with the dataframes.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>AssertionError</code></dt>
+<dd>If the length of the filenames is not 3.</dd>
+<dt><code>ValueError</code></dt>
+<dd>If the filenames are in the wrong order.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@task(checkpoint=False)
+def load_data(
+    filenames: List[str],
+) -&gt; pd.DataFrame:
+    &#34;&#34;&#34;
+    Loads data from the downloaded files and returns the merged DataFrame.
+
+    Args:
+        filenames: List[str]: Filenames of the downloaded files. It must
+            have length 3 and the following order:
+
+            - failure_logs_path (str): Path to the failure logs.
+            - equipment_path (str): Path to the equipment information.
+            - sensor_equipment_path (str): Path to the equipments and
+                sensors relationships.
+
+    Returns:
+        A tuple with the dataframes.
+
+    Raises:
+        AssertionError: If the length of the filenames is not 3.
+        ValueError: If the filenames are in the wrong order.
+    &#34;&#34;&#34;
+    # Checks length of filenames
+    if len(filenames) != 3:
+        raise AssertionError(&#34;filenames must have length 3&#34;)
+
+    # Tries to load data. If it fails, assumes that filenames is in the
+    # wrong order and raises an error.
+    try:
+        failure_logs = parse_failure_logs(filenames[0])
+        log(&#34;Successfully parsed failure logs.&#34;)
+        equipment = pd.read_json(filenames[1])
+        log(&#34;Successfully parsed equipment information.&#34;)
+        sensor_equipment = parse_equipment_sensors_relationship(filenames[2])
+        log(&#34;Successfully parsed equipment-sensor relationships.&#34;)
+    except Exception as exc:
+        raise ValueError(&#34;filenames must be in the following order: &#34;
+                         &#34;failure_logs, equipment, sensor_equipment&#34;) from exc
+
+    # Merges data
+    log(&#34;Merging dataframes and returning...&#34;)
+    return merge_data(failure_logs, equipment, sensor_equipment)</code></pre>
+</details>
+</dd>
+<dt id="shape_challenge.tasks.send_report_to_discord"><code class="name flex">
+<span>def <span class="ident">send_report_to_discord</span></span>(<span>report_text: str, discord_webhook_url: str) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sends the report to the Discord webhook.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>report_text</code></strong> :&ensp;<code>str</code></dt>
+<dd>The report text.</dd>
+<dt><strong><code>discord_webhook_url</code></strong> :&ensp;<code>str</code></dt>
+<dd>The Discord webhook URL.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@task
+def send_report_to_discord(
+    report_text: str,
+    discord_webhook_url: str,
+) -&gt; None:
+    &#34;&#34;&#34;
+    Sends the report to the Discord webhook.
+
+    Args:
+        report_text (str): The report text.
+        discord_webhook_url (str): The Discord webhook URL.
+    &#34;&#34;&#34;
+    log(&#34;Sending report to Discord...&#34;)
+    requests.post(
+        discord_webhook_url,
+        data={
+            &#34;content&#34;: f&#34;```{report_text}```&#34;
+        }
+    )</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="shape_challenge" href="index.html">shape_challenge</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="shape_challenge.tasks.download_data" href="#shape_challenge.tasks.download_data">download_data</a></code></li>
+<li><code><a title="shape_challenge.tasks.filter_data" href="#shape_challenge.tasks.filter_data">filter_data</a></code></li>
+<li><code><a title="shape_challenge.tasks.generate_report" href="#shape_challenge.tasks.generate_report">generate_report</a></code></li>
+<li><code><a title="shape_challenge.tasks.get_average_failures_across_equipment_groups" href="#shape_challenge.tasks.get_average_failures_across_equipment_groups">get_average_failures_across_equipment_groups</a></code></li>
+<li><code><a title="shape_challenge.tasks.get_most_failures_equipment_code" href="#shape_challenge.tasks.get_most_failures_equipment_code">get_most_failures_equipment_code</a></code></li>
+<li><code><a title="shape_challenge.tasks.get_total_equipment_failures" href="#shape_challenge.tasks.get_total_equipment_failures">get_total_equipment_failures</a></code></li>
+<li><code><a title="shape_challenge.tasks.is_none" href="#shape_challenge.tasks.is_none">is_none</a></code></li>
+<li><code><a title="shape_challenge.tasks.load_data" href="#shape_challenge.tasks.load_data">load_data</a></code></li>
+<li><code><a title="shape_challenge.tasks.send_report_to_discord" href="#shape_challenge.tasks.send_report_to_discord">send_report_to_discord</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

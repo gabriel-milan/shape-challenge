@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>shape_challenge API documentation</title>
+<meta name="description" content="Introduction …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Package <code>shape_challenge</code></h1>
+</header>
+<section id="section-intro">
+<h2 id="introduction">Introduction</h2>
+<p>This is a package developed for "Shape's Hard Skill Test - Data Engineer".</p>
+<p>Here, you'll find the following sub-modules:</p>
+<ul>
+<li><code><a title="shape_challenge.constants" href="constants.html">shape_challenge.constants</a></code>: Constants used in the package.</li>
+<li><code><a title="shape_challenge.flows" href="flows.html">shape_challenge.flows</a></code>: Implementation of the data flow using Prefect.
+The flow is implemented using parameters so we can assure this package
+is reusable.</li>
+<li><code><a title="shape_challenge.logging" href="logging.html">shape_challenge.logging</a></code>: Logging wrappers for Prefect tasks.</li>
+<li><code><a title="shape_challenge.parsing" href="parsing.html">shape_challenge.parsing</a></code>: Gather data and clean it a little bit, just
+enough to use it down the road.</li>
+<li><code><a title="shape_challenge.tasks" href="tasks.html">shape_challenge.tasks</a></code>: Task definitions for the data flow. This is where
+the actual work is done. (This is where the magic happens.)</li>
+<li><code><a title="shape_challenge.transform" href="transform.html">shape_challenge.transform</a></code>: General transformations to the data. Includes
+merging dataframes, filtering and aggregating data.</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p><code><a title="shape_challenge" href="#shape_challenge">shape_challenge</a></code> has been developed using Python 3.9.5. Other 3.x versions
+are probably fine too. The installation steps are below:</p>
+<ul>
+<li>First of all, clone the repository:</li>
+</ul>
+<pre><code class="language-bash">git clone https://github.com/gabriel-milan/shape-challenge.git
+</code></pre>
+<ul>
+<li>
+<p>(Optional, but recommended) Create a virtual environment using a tool
+like <code>virtualenv</code> or <code>conda</code>, avoiding conflicts with other packages
+that might be installed in the system.</p>
+</li>
+<li>
+<p>Now, <code>cd</code> into the directory and install the package:</p>
+</li>
+</ul>
+<pre><code class="language-bash">cd shape-challenge
+python3 -m pip install -U .
+</code></pre>
+<p>And you're done!</p>
+<h2 id="getting-started">Getting started</h2>
+<h3 id="using-the-sample-data">Using the sample data</h3>
+<p>For demonstration purposes, I've included sample data files in the repository.
+They are located in the <code>sample_data/</code> directory. Although it follows the
+same structure as the real data files, they do not contain the same data or
+any of the original information.</p>
+<p>In order to run the data flow, assuming you're on the repository root and you
+have the package installed, you can run the following command:</p>
+<pre><code class="language-bash">python3 scripts/run_sample.py
+</code></pre>
+<p>After that, you should see the report in the <code>reports/</code> directory. The file
+should be named <code>sample_shape_challenge_report.txt</code> and it should contain
+the following information:</p>
+<pre><code class="language-txt">&gt;&gt;&gt; Report of failures between 2020-01-01 and 2020-01-31 &lt;&lt;&lt;
+- Total number of failures: 3
+- Equipment code with the most failures: D4C3B2A1
+- Average failures across equipment groups:
+        * GROUP123: 1.0
+        * GROUP321: 2.0
+</code></pre>
+<h3 id="using-the-real-data">Using the real data</h3>
+<p>If you want to run the data flow using the real data, you'll need to
+either download the data files from the original source and place them
+in the <code>data/</code> directory or you can provide the URLs to the data files,
+as we did in the sample data.</p>
+<p>Assuming you've chosen to download the data, the directory structure
+should look like this:</p>
+<pre><code class="language-txt">shape-challenge/
+├── data/
+│   ├── equipment_failure_sensors.log
+│   ├── equipment_sensors.csv
+│   ├── equipment.json
+├── scripts/
+│   ├── run_original_data.py
+    ...
+</code></pre>
+<p>This way, you can run the data flow using the following command:</p>
+<pre><code class="language-bash">python3 scripts/run_original_data.py
+</code></pre>
+<p>Similarly, the report should be generated in the <code>reports/</code> directory.
+The file should be named <code>shape_challenge_report.txt</code> and it should
+contain the following information:</p>
+<pre><code class="language-txt">&gt;&gt;&gt; Report of failures between 2020-01-01 and 2020-01-31 &lt;&lt;&lt;
+- Total number of failures: 11297
+- Equipment code with the most failures: E1AD07D4
+- Average failures across equipment groups:
+        * VAPQY59S: 802.0
+        * PA92NCXZ: 833.0
+        * 9N127Z5P: 846.5
+        * NQWPA8D3: 847.5
+        * FGHQWR2Q: 880.75
+        * Z9K1SAP4: 1116.0
+</code></pre>
+<h3 id="extra-discord-webhook-integration">Extra - Discord webhook integration</h3>
+<p>The implemented flow also has optional Discord webhook integration.
+In other words, if you provide a Discord webhook URL, the report will
+be sent to that Discord webhook.</p>
+<p>If you want to use this feature, you'll need to provide the URL to the
+webhook in any script in the <code>scripts/</code> directory, similarlly to the
+example below:</p>
+<pre><code class="language-py">if __name__ == &quot;__main__&quot;:
+    flow.run(
+        parameters={
+            ...
+            &quot;Discord webhook URL for report&quot;: &quot;https://discordapp.com/api/webhooks/...&quot;,
+        }
+    )
+</code></pre>
+<h2 id="how-this-was-developed">How this was developed</h2>
+<p>The initial step was opening the data files and understanding the structure
+of the data and relationships between the files. Then, I started coding
+parsers for the data files in order to provide a clean and structured
+pandas dataframe.</p>
+<p>The next step was to write functions that would merge all the dataframes
+together and filter the data. This way, data would be ready for any
+analysis or visualization that might be needed.</p>
+<p>Then, in order to accomplish the goal of the challenge, I started writing
+the tasks that would do the actual work that the challenge required. I've
+chosen Prefect for this task because it's a great tool for data pipelines
+and I've got experience with it.</p>
+<p>Finally, I've coded scripts that would run the data flow and generate
+the report. The answers to the challenge are in the <code>reports/</code> directory,
+but also shown <a href="#using-the-real-data">above</a>.</p>
+<p>I've decided not to upload the original data files to GitHub because I
+wasn't sure if it would be fine to do so.</p>
+<p>When everything was done, I've decided to do my own exploratory analysis
+and visualization of the data. Everything related to this analysis is
+in the <code>analysis/</code> directory. Documentation, insights and conclusions
+are also inside those files.</p>
+<p>And that's it! Feel free to check out the code and the analysis. If you
+have any questions, feel free to contact me at any time.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+
+## Introduction
+
+This is a package developed for &#34;Shape&#39;s Hard Skill Test - Data Engineer&#34;.
+
+Here, you&#39;ll find the following sub-modules:
+
+- `shape_challenge.constants`: Constants used in the package.
+- `shape_challenge.flows`: Implementation of the data flow using Prefect.
+    The flow is implemented using parameters so we can assure this package
+    is reusable.
+- `shape_challenge.logging`: Logging wrappers for Prefect tasks.
+- `shape_challenge.parsing`: Gather data and clean it a little bit, just
+    enough to use it down the road.
+- `shape_challenge.tasks`: Task definitions for the data flow. This is where
+    the actual work is done. (This is where the magic happens.)
+- `shape_challenge.transform`: General transformations to the data. Includes
+    merging dataframes, filtering and aggregating data.
+
+## Installation
+
+`shape_challenge` has been developed using Python 3.9.5. Other 3.x versions
+are probably fine too. The installation steps are below:
+
+- First of all, clone the repository:
+
+```bash
+git clone https://github.com/gabriel-milan/shape-challenge.git
+```
+
+- (Optional, but recommended) Create a virtual environment using a tool
+    like `virtualenv` or `conda`, avoiding conflicts with other packages
+    that might be installed in the system.
+
+- Now, `cd` into the directory and install the package:
+
+```bash
+cd shape-challenge
+python3 -m pip install -U .
+```
+
+And you&#39;re done!
+
+## Getting started
+
+### Using the sample data
+
+For demonstration purposes, I&#39;ve included sample data files in the repository.
+They are located in the `sample_data/` directory. Although it follows the
+same structure as the real data files, they do not contain the same data or
+any of the original information.
+
+In order to run the data flow, assuming you&#39;re on the repository root and you
+have the package installed, you can run the following command:
+
+```bash
+python3 scripts/run_sample.py
+```
+
+After that, you should see the report in the `reports/` directory. The file
+should be named `sample_shape_challenge_report.txt` and it should contain
+the following information:
+
+```txt
+&gt;&gt;&gt; Report of failures between 2020-01-01 and 2020-01-31 &lt;&lt;&lt;
+- Total number of failures: 3
+- Equipment code with the most failures: D4C3B2A1
+- Average failures across equipment groups:
+        * GROUP123: 1.0
+        * GROUP321: 2.0
+```
+
+### Using the real data
+
+If you want to run the data flow using the real data, you&#39;ll need to
+either download the data files from the original source and place them
+in the `data/` directory or you can provide the URLs to the data files,
+as we did in the sample data.
+
+Assuming you&#39;ve chosen to download the data, the directory structure
+should look like this:
+
+```txt
+shape-challenge/
+├── data/
+│   ├── equipment_failure_sensors.log
+│   ├── equipment_sensors.csv
+│   ├── equipment.json
+├── scripts/
+│   ├── run_original_data.py
+    ...
+```
+
+This way, you can run the data flow using the following command:
+
+```bash
+python3 scripts/run_original_data.py
+```
+
+Similarly, the report should be generated in the `reports/` directory.
+The file should be named `shape_challenge_report.txt` and it should
+contain the following information:
+
+```txt
+&gt;&gt;&gt; Report of failures between 2020-01-01 and 2020-01-31 &lt;&lt;&lt;
+- Total number of failures: 11297
+- Equipment code with the most failures: E1AD07D4
+- Average failures across equipment groups:
+        * VAPQY59S: 802.0
+        * PA92NCXZ: 833.0
+        * 9N127Z5P: 846.5
+        * NQWPA8D3: 847.5
+        * FGHQWR2Q: 880.75
+        * Z9K1SAP4: 1116.0
+```
+
+### Extra - Discord webhook integration
+
+The implemented flow also has optional Discord webhook integration.
+In other words, if you provide a Discord webhook URL, the report will
+be sent to that Discord webhook.
+
+If you want to use this feature, you&#39;ll need to provide the URL to the
+webhook in any script in the `scripts/` directory, similarlly to the
+example below:
+
+```py
+if __name__ == &#34;__main__&#34;:
+    flow.run(
+        parameters={
+            ...
+            &#34;Discord webhook URL for report&#34;: &#34;https://discordapp.com/api/webhooks/...&#34;,
+        }
+    )
+```
+
+## How this was developed
+
+The initial step was opening the data files and understanding the structure
+of the data and relationships between the files. Then, I started coding
+parsers for the data files in order to provide a clean and structured
+pandas dataframe.
+
+The next step was to write functions that would merge all the dataframes
+together and filter the data. This way, data would be ready for any
+analysis or visualization that might be needed.
+
+Then, in order to accomplish the goal of the challenge, I started writing
+the tasks that would do the actual work that the challenge required. I&#39;ve
+chosen Prefect for this task because it&#39;s a great tool for data pipelines
+and I&#39;ve got experience with it.
+
+Finally, I&#39;ve coded scripts that would run the data flow and generate
+the report. The answers to the challenge are in the `reports/` directory,
+but also shown [above](#using-the-real-data).
+
+I&#39;ve decided not to upload the original data files to GitHub because I
+wasn&#39;t sure if it would be fine to do so.
+
+When everything was done, I&#39;ve decided to do my own exploratory analysis
+and visualization of the data. Everything related to this analysis is
+in the `analysis/` directory. Documentation, insights and conclusions
+are also inside those files.
+
+And that&#39;s it! Feel free to check out the code and the analysis. If you
+have any questions, feel free to contact me at any time.
+
+&#34;&#34;&#34;</code></pre>
+</details>
+</section>
+<section>
+<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+<dl>
+<dt><code class="name"><a title="shape_challenge.constants" href="constants.html">shape_challenge.constants</a></code></dt>
+<dd>
+<div class="desc"><p>Constants used in the package.</p></div>
+</dd>
+<dt><code class="name"><a title="shape_challenge.flows" href="flows.html">shape_challenge.flows</a></code></dt>
+<dd>
+<div class="desc"><p>Implementation of the data flow using Prefect. The flow is implemented using
+parameters so we can assure this package is reusable.</p></div>
+</dd>
+<dt><code class="name"><a title="shape_challenge.logging" href="logging.html">shape_challenge.logging</a></code></dt>
+<dd>
+<div class="desc"><p>Logging wrappers for Prefect tasks.</p></div>
+</dd>
+<dt><code class="name"><a title="shape_challenge.parsing" href="parsing.html">shape_challenge.parsing</a></code></dt>
+<dd>
+<div class="desc"><p>Gather data and clean it a little bit, just enough to use it down the road.</p></div>
+</dd>
+<dt><code class="name"><a title="shape_challenge.tasks" href="tasks.html">shape_challenge.tasks</a></code></dt>
+<dd>
+<div class="desc"><p>Task definitions for the data flow. This is where the actual work is done.
+(This is where the magic happens.)</p></div>
+</dd>
+<dt><code class="name"><a title="shape_challenge.transform" href="transform.html">shape_challenge.transform</a></code></dt>
+<dd>
+<div class="desc"><p>General transformations to the data. Includes merging dataframes,
+filtering and aggregating data.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#getting-started">Getting started</a><ul>
+<li><a href="#using-the-sample-data">Using the sample data</a></li>
+<li><a href="#using-the-real-data">Using the real data</a></li>
+<li><a href="#extra-discord-webhook-integration">Extra - Discord webhook integration</a></li>
+</ul>
+</li>
+<li><a href="#how-this-was-developed">How this was developed</a></li>
+</ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<ul>
+<li><code><a title="shape_challenge.constants" href="constants.html">shape_challenge.constants</a></code></li>
+<li><code><a title="shape_challenge.flows" href="flows.html">shape_challenge.flows</a></code></li>
+<li><code><a title="shape_challenge.logging" href="logging.html">shape_challenge.logging</a></code></li>
+<li><code><a title="shape_challenge.parsing" href="parsing.html">shape_challenge.parsing</a></code></li>
+<li><code><a title="shape_challenge.tasks" href="tasks.html">shape_challenge.tasks</a></code></li>
+<li><code><a title="shape_challenge.transform" href="transform.html">shape_challenge.transform</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
